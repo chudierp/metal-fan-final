@@ -4,19 +4,22 @@ import { View ,StyleSheet, FlatList, SafeAreaView } from 'react-native';
 
 import Item from './item'
 import { bandNames } from './bands';
+import StatsScreen from './stats';
 
+import { Ionicons } from 'react-native-vector-icons'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Bands from './item';
 
 
-function HomeScreen() {
+function BandsScreen() {
   return (
     <SafeAreaView style={styles.listContainer}>
       <View>
         <FlatList
             data={bandNames}
             renderItem={({ item }) => {
-              return <Item data={item}/>
+              return <Bands data={item}/>
             }}
             keyExtractor={item => item.ID}
           />
@@ -25,13 +28,13 @@ function HomeScreen() {
   );
 }
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+// function StatsScreen() {
+//   return (
+//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//       <Text>Settings!</Text>
+//     </View>
+//   );
+// }
 
 function StyleScreen() {
   return (
@@ -57,9 +60,28 @@ export default function App() {
     //     </View>
     // </SafeAreaView>  
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Bands" component={HomeScreen} />
-        <Tab.Screen name="Stats" component={SettingsScreen} />
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+      
+            if (route.name === 'Bands') {
+              iconName = focused ? 'musical-notes' : 'musical-notes-outline';
+            } else if (route.name === 'Stats') {
+              iconName = focused ? 'bar-chart' : 'bar-chart-outline';
+            } else if (route.name === 'Styles') {
+              iconName = focused ? 'disc' : 'disc-outline';
+            }
+      
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'blue',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Bands" component={BandsScreen} />
+        <Tab.Screen name="Stats" component={StatsScreen} />
         <Tab.Screen name="Styles" component={StyleScreen} />
       </Tab.Navigator>
     </NavigationContainer>

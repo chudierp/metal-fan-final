@@ -2,7 +2,8 @@ import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import Feature from './details'
 
-function Item(props) {
+
+function Bands(props) {
     // const { name } = props
     const { data } = props
     const keys = Object.keys(data)
@@ -42,4 +43,4 @@ const styles = StyleSheet.create({
     },
   });
   
-export default Item
+export default Bands
