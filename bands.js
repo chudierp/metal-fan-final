@@ -1,9 +1,9 @@
 import * as data from './metal.json'
 
-const bandNames = []
-for (let key in data) {
-  bandNames.push(key)
-}
-console.log(data)
+
+const bandNames = data.bands.map((band) => {
+  return band
+})
+// console.log(bandNames)
 
 export { bandNames }

@@ -1,4 +1,5 @@
-[
+{
+  "bands":[
     {
       "ID": 0,
       "band_name": "Iron Maiden",
@@ -449,3 +450,4 @@
       "split": "1991",
       "style": "Extreme gothic,Symphonic black,Death,Symphonic"
     }]
+}
