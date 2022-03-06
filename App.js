@@ -1,10 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import { View ,StyleSheet, FlatList, SafeAreaView } from 'react-native';
 
 
-import Item from './item'
 import { bandNames } from './bands';
 import StatsScreen from './stats';
+import StylesScreen from './style';
 
 import { Ionicons } from 'react-native-vector-icons'
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,7 +14,7 @@ import Bands from './item';
 function BandsScreen() {
   return (
     <SafeAreaView style={styles.listContainer}>
-      <View>
+      <View style={styles.bands}>
         <FlatList
             data={bandNames}
             renderItem={({ item }) => {
@@ -28,38 +27,23 @@ function BandsScreen() {
   );
 }
 
-// function StatsScreen() {
-//   return (
-//     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//       <Text>Settings!</Text>
-//     </View>
-//   );
-// }
-
 function StyleScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
+    <FlatList
+      data={bandNames}
+      renderItem={({ item }) => {
+        return <StylesScreen data={item}/>
+      }}
+      keyExtractor={item => item.style}
+    />
   );
 }
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  return (
-    // <SafeAreaView style={styles.listContainer}>
-    //   <View>
-    //     <FlatList
-    //         data={bandNames}
-    //         renderItem={({ item }) => {
-    //           return <Item data={item}/>
-    //         }}
-    //         keyExtractor={item => item.ID}
-    //       />
-    //     </View>
-    // </SafeAreaView>  
-    <NavigationContainer>
+  return ( 
+    <NavigationContainer style={styles.navigation}>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
@@ -73,7 +57,6 @@ export default function App() {
               iconName = focused ? 'disc' : 'disc-outline';
             }
       
-            // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: 'blue',
@@ -92,8 +75,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  navigation: {
+    backgroundColor: 'black'
+  },
+  bands: {
+    backgroundColor: 'black',
+  }
 });

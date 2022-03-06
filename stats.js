@@ -62,30 +62,34 @@ function StatsScreen() {
 }
 
 const styles = StyleSheet.create({
-    title: {
-        
+    title: { 
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     heading: {
         fontSize: 30,
         fontWeight: 'bold',
+        color: 'white'
     },
     container: {
         paddingTop: 100,
-        flex: 1
+        flex: 1,
+        backgroundColor: 'black',
     },
     label: {
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'white'
     },
     details: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 20 
+        margin: 20,
+        color: 'white'
     },
     count: {
         fontSize: 18,
+        color: 'white'
     }
 });
 
